@@ -3,17 +3,13 @@ from django.contrib.gis.db import models
 
 
 class RiskZone(models.Model):
-    RISK_TYPES = [
-        ('flood', 'Inondation'),
-        ('fire', 'Incendie'),
-        ('earthquake', 'Séisme'),
-    ]
-
     name = models.CharField(max_length=100)
-    risk_type = models.CharField(max_length=20, choices=RISK_TYPES)
-    risk_level = models.IntegerField()
-    occurrence_probability = models.FloatField(help_text="Probabilité entre 0 et 1")
-    geom = models.PolygonField()
+    risk_type = models.CharField(max_length=50)  # inondation, séisme...
+    geometry = models.GeometryField(srid=4326)
+    severity = models.FloatField()
 
-    def __str__(self):
-        return f"{self.name} ({self.get_risk_type_display()})"
+class PropertyAssessment(models.Model):
+    address = models.TextField()
+    location = models.PointField(srid=4326)
+    risk_score = models.FloatField()
+    date_created = models.DateTimeField(auto_now_add=True)
