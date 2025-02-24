@@ -1,1 +1,0 @@
-Application web permettant d'évaluer les risques naturels (inondations, séismes, incendies) liés à une adresse, en générant une carte interactive, un score de risque et une estimation de prime d'assurance. Destinée aux assureurs et particuliers, elle s'appuie sur des données géospatiales publiques pour offrir une analyse transparente et rapide.
