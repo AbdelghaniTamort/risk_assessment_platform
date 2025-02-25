@@ -15,9 +15,14 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-if os.name == 'nt':
-    GDAL_LIBRARY_PATH = os.environ.get('GDAL_LIBRARY_PATH', 'C:/gdal/bin/gdal.dll')
-    GEOS_LIBRARY_PATH = os.environ.get('GEOS_LIBRARY_PATH', 'C:/gdal/bin/geos_c.dll')
+# OSGeo4W paths
+GDAL_LIBRARY_PATH = r'C:\OSGeo4W\bin\gdal310.dll'  # Adjust version number if needed
+GEOS_LIBRARY_PATH = r'C:\OSGeo4W\bin\geos_c.dll'
+
+# Add to environment
+os.environ['PATH'] = r'C:\OSGeo4W\bin;' + os.environ['PATH']
+os.environ['GDAL_DATA'] = r'C:\OSGeo4W\share\gdal'
+os.environ['PROJ_LIB'] = r'C:\OSGeo4W\share\proj'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -40,7 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'risk_assessment',
+    'django.contrib.gis',
+    'risk_analysis',
 ]
 
 MIDDLEWARE = [
